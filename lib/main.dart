@@ -2,8 +2,6 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  // Garante que o Flutter está totalmente inicializado antes da execução do código
-  WidgetsFlutterBinding.ensureInitialized();
   runApp(MarimbaApp());
 }
 
