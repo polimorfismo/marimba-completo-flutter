@@ -1,4 +1,4 @@
-package com.duarte.marimba;
+package com.polimorfismo.marimba.marimba_completo_flutter;
 
 import io.flutter.embedding.android.FlutterActivity;
 

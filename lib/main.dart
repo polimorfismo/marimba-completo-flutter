@@ -1,22 +1,38 @@
-import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MarimbaApp());
+void main() {
+  // Garante que o Flutter está totalmente inicializado antes da execução do código
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MarimbaApp());
+}
 
 class MarimbaApp extends StatelessWidget {
-  void tocarSom(int numeroDoSom) {
-    final player = AudioCache();
-    player.play('nota$numeroDoSom.wav');
+
+  Future<void> tocarSom(int numeroDoSom) async {
+    // Instancia um objeto do tipo audioplayer
+    final player = AudioPlayer();
+    // Carrega o som a ser executado
+    await player.setSourceAsset('nota$numeroDoSom.wav');
+    // Executa o som (equivalente ao play)
+    await player.resume();
   }
 
-  Expanded criarBotao({Color cor, int numeroDaNota}) {
+  Expanded criarBotao({required Color cor, required int numeroDaNota}) {
     return Expanded(
       child: TextButton(
         onPressed: () {
           tocarSom(numeroDaNota);
         },
-        style: TextButton.styleFrom(backgroundColor: cor),
-        child: null,
+        style: TextButton.styleFrom(
+          backgroundColor: cor,
+          foregroundColor: Colors.white,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.zero,
+          ),
+        ),
+        // Widget vazio e invisível para garantir que o botão funcione corretamente sem precisar de um child
+        child: const SizedBox.shrink(),
       ),
     );
   }
